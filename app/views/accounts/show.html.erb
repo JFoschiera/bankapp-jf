@@ -1,0 +1,11 @@
+<div class="container m-5">
+  <p>Your account number</p>
+  <p><%= @account.account_number %></p>
+  <p>Your account balance</p>
+  <p>U$<%= @account.balance %></p>
+  <p><%= link_to "New Transaction", new_account_transaction_path(@account), class: "btn btn-primary" %></p>
+  <p><%= link_to "Back", root_path %></p>
+</div>
+
+
+

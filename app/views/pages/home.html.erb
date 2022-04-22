@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container m-5">
+  <% if user_signed_in? %>
+    <h3> Hi <%= current_user.name %>!</h3>
+    <p><%= link_to "Log out", destroy_user_session_path, method: :delete %></p>
+    <%= link_to "Create Account", new_account_path, class: "btn btn-primary" %>
+
+
+
+    <% else %>
+    <h3>Welcome to BankApp-JF</h3>
+      <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
