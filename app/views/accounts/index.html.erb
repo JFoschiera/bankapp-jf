@@ -1,0 +1,30 @@
+<div class="container mt-5" style="width: 70vh">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Balance</th>
+      </tr>
+    </thead>
+  <% @accounts.each do |account| %>
+    <% if account.user_id && account.user_id == current_user.id %>
+      <tbody>
+        <tr>
+          <td><%= link_to "Access", account_url(account) %></td>
+          <td><%= account.account_number %></td>
+          <td><%= account.balance %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% end %>
+  </table>
+
+
+  <%= link_to "Create Account", new_account_path, class: "btn btn-primary" %>
+  <br>
+  <%= link_to "Back", root_path %>
+
+
+</div>

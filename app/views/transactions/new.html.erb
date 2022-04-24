@@ -8,14 +8,11 @@
                   as: :select
       %>
       <br>
-      <%= f.input :amount,
-                  label:false,
-                  placeholder: 'maximun ammount: 900 dolars'
+      <%= f.input :amount
       %>
       <br>
       <%= f.input :account_to_transfer,
-                  label:false,
-                  placeholder: 'for TRANSFER only'
+                  placeholder: 'Ignored for other transactions'
       %>
 
     </div>

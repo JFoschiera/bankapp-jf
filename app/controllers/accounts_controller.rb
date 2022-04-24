@@ -3,7 +3,10 @@ class AccountsController < ApplicationController
 
 
   def index
-    @account = Account.find(params[:id])
+    #@account = Account.find(params[:id])
+    @accounts = Account.all
+    @transactions = Transaction.all
+    @transaction = Transaction.new
   end
 
   def show

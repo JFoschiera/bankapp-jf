@@ -1,8 +1,8 @@
-<div class="container m-5">
+<div class="container mt-5" style="width: 60vh">
   <% if user_signed_in? %>
     <h3> Hi <%= current_user.name %>!</h3>
+    <%= link_to "My Accounts", accounts_path, class: "btn btn-primary" %>
     <p><%= link_to "Log out", destroy_user_session_path, method: :delete %></p>
-    <%= link_to "Create Account", new_account_path, class: "btn btn-primary" %>
 
 
 

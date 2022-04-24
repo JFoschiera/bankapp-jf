@@ -1,11 +1,14 @@
-<div class="container m-5">
-  <p>Your account number</p>
-  <p><%= @account.account_number %></p>
-  <p>Your account balance</p>
-  <p>U$<%= @account.balance %></p>
-  <p><%= link_to "New Transaction", new_account_transaction_path(@account), class: "btn btn-primary" %></p>
-  <p><%= link_to "Back", root_path %></p>
+<div class="container mt-5" style="width: 70%; text-align: center">
+  <% if @account.user_id == current_user.id %>
+    <p>Your account number</p>
+    <p><%= @account.account_number %></p>
+    <p>Your account balance</p>
+    <p>U$<%= @account.balance %></p>
+    <p><%= link_to "New Transaction", new_account_transaction_path(@account), class: "btn btn-primary" %></p>
+    <p><%= link_to "Transactions' History", account_transactions_path(@account), class: "btn btn-primary" %></p>
+
+    <p><%= link_to "Back", accounts_path %></p>
+  <% else %>
+    <h1>What are you trying to do?</h1>
+  <% end %>
 </div>
-
-
-
