@@ -1,12 +1,10 @@
 class AccountsController < ApplicationController
   skip_before_action :authenticate_user!
 
-
   def index
     @transactions = Transaction.all
     @transaction = Transaction.new
     @accounts = policy_scope(Account).order(created_at: :desc)
-
   end
 
   def show
@@ -18,7 +16,7 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
-
+    
     authorize @account
   end
 

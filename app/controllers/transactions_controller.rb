@@ -3,16 +3,14 @@ class TransactionsController < ApplicationController
 
 
   def index
-    # @transactions = Transaction.all
     @account = Account.find(params[:account_id])
     @transactions = policy_scope(Transaction).order(created_at: :desc)
-
-
   end
 
   def new
     @account = Account.find(params[:account_id])
     @transaction = Transaction.new
+
     authorize @transaction
   end
 
@@ -21,6 +19,7 @@ class TransactionsController < ApplicationController
     @account = Account.find(params[:account_id])
     @transaction.account = @account
     @transaction.save
+
     authorize @transaction
 
     if @transaction.save
@@ -29,7 +28,6 @@ class TransactionsController < ApplicationController
     else
       render :new
     end
-
   end
 
   private
