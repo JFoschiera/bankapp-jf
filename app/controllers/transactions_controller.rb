@@ -15,15 +15,15 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     @account = Account.find(params[:account_id])
     @transaction.account = @account
-
+    @transaction.save
 
     if @transaction.save
+      check_transfer_type(@transaction)
       redirect_to account_path(@account), notice: 'Transaction was successfully concluded.'
     else
       render :new
     end
 
-    check_transfer_type(@transaction)
   end
 
   private
