@@ -1,14 +1,19 @@
 class TransactionsController < ApplicationController
   skip_before_action :authenticate_user!
 
+
   def index
-    @transactions = Transaction.all
+    # @transactions = Transaction.all
     @account = Account.find(params[:account_id])
+    @transactions = policy_scope(Transaction).order(created_at: :desc)
+
+
   end
 
   def new
     @account = Account.find(params[:account_id])
     @transaction = Transaction.new
+    authorize @transaction
   end
 
   def create
@@ -16,6 +21,7 @@ class TransactionsController < ApplicationController
     @account = Account.find(params[:account_id])
     @transaction.account = @account
     @transaction.save
+    authorize @transaction
 
     if @transaction.save
       check_transfer_type(@transaction)

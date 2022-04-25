@@ -3,19 +3,23 @@ class AccountsController < ApplicationController
 
 
   def index
-    #@account = Account.find(params[:id])
-    @accounts = Account.all
     @transactions = Transaction.all
     @transaction = Transaction.new
+    @accounts = policy_scope(Account).order(created_at: :desc)
+
   end
 
   def show
     @account = Account.find(params[:id])
     @transaction = Transaction.new
+
+    authorize @account
   end
 
   def new
     @account = Account.new
+
+    authorize @account
   end
 
   def create
@@ -23,6 +27,8 @@ class AccountsController < ApplicationController
     @account.user = current_user
     @account.account_number = rand(1_000_000_000_000)
     @account.balance = '0.0'.to_i
+
+    authorize @account
 
     if @account.save
       redirect_to @account, notice: 'Account was successfully created.'

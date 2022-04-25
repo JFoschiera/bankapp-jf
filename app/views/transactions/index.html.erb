@@ -11,7 +11,6 @@
       </tr>
     </thead>
   <% @transactions.each do |transaction| %>
-    <% if transaction.account_id == @account.id || transaction.account_to_transfer == @account.account_number  %>
       <tbody>
         <tr>
           <td><%= transaction.created_at.strftime('%b/%d - %H:%M') %></td>
@@ -35,7 +34,5 @@
   </table>
 
   <%= link_to "Back", account_url(@account) %>
-  <% else %>
-    <h1>Sorry, you have no access to it.</h1>
-<% end %>
+
 </div>
