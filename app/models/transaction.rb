@@ -1,6 +1,7 @@
 
 class Transaction < ApplicationRecord
   belongs_to :account
+  belongs_to :user
 
   TRANSACTIONS = ['withdraw', 'deposit', 'transfer']
 
@@ -26,4 +27,8 @@ class Transaction < ApplicationRecord
     account_to_receive = Account.find_by(account_number: self.account_to_transfer)
     errors.add(:base, "This account doesn't exist") if !account_to_receive.present? && self.transfer_type == "transfer"
   end
+
+  # def check_user
+  #   errors.add(:base, "transaction not authorized") if self.account.user_id != self.user_id
+  # end
 end
