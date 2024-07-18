@@ -26,3 +26,5 @@ class Transaction < ApplicationRecord
     errors.add(:base, "This account doesn't exist") if !account_to_receive.present? && self.transfer_type == "transfer"
   end
 end
+
+# conflict reminder // CHECK
